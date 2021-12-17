@@ -519,7 +519,7 @@ int main() {
 	getline(cin, stroka, '=');
 	string postfix_string;
 	try {
-		if (/*check_bracekts(stroka) &&*/ check_for_correct_input(stroka) /*&& chek_kol_(stroka)*/) {
+		if (check_for_correct_input(stroka)) {
 			postfix_string = postfix(stroka); // convert to postfix
 		}
 	}
