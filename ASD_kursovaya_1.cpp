@@ -7,133 +7,133 @@
 #define e 2.718281
 using namespace std;
 
-bool check_for_correct_input(string stroka) {
+bool check_for_correct_input(string str) {
 	bool check = true;
-	for (int pos = 0; pos < stroka.length(); pos++)
+	for (int pos = 0; pos < str.length(); pos++)
 	{
-		if (stroka[pos] == '.' && (stroka[pos - 1] > 57 && stroka[pos - 1] < 48) && (stroka[pos + 1] > 57 && stroka[pos + 1] < 48)) {
+		if (str[pos] == '.' && (str[pos - 1] > 57 && str[pos - 1] < 48) && (str[pos + 1] > 57 && str[pos + 1] < 48)) {
 			throw invalid_argument("Incorrect input of number");
 			check = false;
 		}
-		else if (stroka[pos] == '*' && (stroka[pos - 1] == '(' || stroka[pos + 1] == ')')) {
+		else if (str[pos] == '*' && (str[pos - 1] == '(' || str[pos + 1] == ')')) {
 			throw invalid_argument("Incorrect input of application *");
 			check = false;
 		}
-		else if (stroka[pos] == '+' && (stroka[pos - 1] == '(' || stroka[pos + 1] == ')')) {
+		else if (str[pos] == '+' && (str[pos - 1] == '(' || str[pos + 1] == ')')) {
 			throw invalid_argument("Incorrect input of application +");
 			check = false;
 		}
-		else if (stroka[pos] == '-' && stroka[pos + 1] == ')') {
+		else if (str[pos] == '-' && str[pos + 1] == ')') {
 			throw invalid_argument("Incorrect input of application -");
 			check = false;
 		}
-		else if (stroka[pos] == '/' && (stroka[pos - 1] == '(' || stroka[pos + 1] == ')')) {
+		else if (str[pos] == '/' && (str[pos - 1] == '(' || str[pos + 1] == ')')) {
 			throw invalid_argument("Incorrect input of application /");
 			check = false;
 		}
-		else if (stroka[pos] == '^' && stroka[pos - 1] == '(') {
+		else if (str[pos] == '^' && str[pos - 1] == '(') {
 			throw invalid_argument("Incorrect input of application ^");
 			check = false;
 		}
-		else if (stroka[pos] <= 57 && stroka[pos] >= 48) {}
+		else if (str[pos] <= 57 && str[pos] >= 48) {}
 
-		else if (stroka[pos] == 'a' && stroka[pos + 1] != 'b' && stroka[pos + 2] != 's') {
+		else if (str[pos] == 'a' && str[pos + 1] != 'b' && str[pos + 2] != 's') {
 			throw invalid_argument("Incorrect input of the abs function");
 			check = false;
 		}
-		else if ((stroka[pos] == 'a' && stroka[pos + 1] == 'b' && stroka[pos + 2] == 's') && (stroka[pos + 3] != '(' || (pos != 0 && (stroka[pos - 2] != 45 && stroka[pos - 2] != 47 && stroka[pos - 2] != 94 && stroka[pos - 1] != 40 && stroka[pos - 2] != 42 && stroka[pos - 2] != 43)))) {
+		else if ((str[pos] == 'a' && str[pos + 1] == 'b' && str[pos + 2] == 's') && (str[pos + 3] != '(' || (pos != 0 && (str[pos - 2] != 45 && str[pos - 2] != 47 && str[pos - 2] != 94 && str[pos - 1] != 40 && str[pos - 2] != 42 && str[pos - 2] != 43)))) {
 			throw invalid_argument("Incorrect arithmetics the abs function");
 			check = false;
 		}
-		else if (stroka[pos] == 'a' && stroka[pos + 1] == 'b' && stroka[pos + 2] == 's') {
+		else if (str[pos] == 'a' && str[pos + 1] == 'b' && str[pos + 2] == 's') {
 			pos = pos + 3;
 		}
 
-		else if (stroka[pos] == 'c' && ((stroka[pos + 1] != 'o' && stroka[pos + 2] != 's') && (stroka[pos + 1] != 't' && stroka[pos + 2] != 'g'))) {
+		else if (str[pos] == 'c' && ((str[pos + 1] != 'o' && str[pos + 2] != 's') && (str[pos + 1] != 't' && str[pos + 2] != 'g'))) {
 			throw invalid_argument("Incorrect input of the cos or ctg function");
 			check = false;
 		}
-		else if ((stroka[pos] == 'c' && ((stroka[pos + 1] == 'o' && stroka[pos + 2] == 's') || (stroka[pos + 1] == 't' && stroka[pos + 2] == 'g'))) && (stroka[pos + 3] != '(' || (pos != 0 && (stroka[pos - 2] != 45 && stroka[pos - 2] != 47 && stroka[pos - 2] != 94 && stroka[pos - 1] != 40 && stroka[pos - 2] != 42 && stroka[pos - 2] != 43)))) {
+		else if ((str[pos] == 'c' && ((str[pos + 1] == 'o' && str[pos + 2] == 's') || (str[pos + 1] == 't' && str[pos + 2] == 'g'))) && (str[pos + 3] != '(' || (pos != 0 && (str[pos - 2] != 45 && str[pos - 2] != 47 && str[pos - 2] != 94 && str[pos - 1] != 40 && str[pos - 2] != 42 && str[pos - 2] != 43)))) {
 			throw invalid_argument("Incorrect input of arithmetics the cos or ctg function");
 			check = false;
 		}
-		else if (stroka[pos] == 'c' && stroka[pos + 1] == 'o' && stroka[pos + 2] == 's') {
+		else if (str[pos] == 'c' && str[pos + 1] == 'o' && str[pos + 2] == 's') {
 			pos = pos + 3;
 		}
-		else if (stroka[pos] == 'c' && stroka[pos + 1] == 't' && stroka[pos + 2] == 'g') {
+		else if (str[pos] == 'c' && str[pos + 1] == 't' && str[pos + 2] == 'g') {
 			pos = pos + 3;
 		}
 
-		else if (stroka[pos] == 's' && ((stroka[pos + 1] != 'i' && stroka[pos + 2] != 'n') && (stroka[pos + 1] != 'q' && stroka[pos + 2] != 'r' && stroka[pos + 3] != 't'))) {
+		else if (str[pos] == 's' && ((str[pos + 1] != 'i' && str[pos + 2] != 'n') && (str[pos + 1] != 'q' && str[pos + 2] != 'r' && str[pos + 3] != 't'))) {
 			throw invalid_argument("Incorrect input of the sin or sqrt function");
 			check = false;
 		}
-		else if ((stroka[pos] == 's' && stroka[pos + 1] == 'i' && stroka[pos + 2] == 'n') && (stroka[pos + 3] != '(' || (pos != 0 && (stroka[pos - 2] != 45 && stroka[pos - 2] != 47 && stroka[pos - 2] != 94 && stroka[pos - 1] != 40 && stroka[pos - 2] != 42 && stroka[pos - 2] != 43)))) {
+		else if ((str[pos] == 's' && str[pos + 1] == 'i' && str[pos + 2] == 'n') && (str[pos + 3] != '(' || (pos != 0 && (str[pos - 2] != 45 && str[pos - 2] != 47 && str[pos - 2] != 94 && str[pos - 1] != 40 && str[pos - 2] != 42 && str[pos - 2] != 43)))) {
 			throw invalid_argument("Incorrect arithmetics the sin function");
 			check = false;
 		}
-		else if ((stroka[pos] == 's' && stroka[pos + 1] == 'q' && stroka[pos + 2] == 'r' && stroka[pos + 3] == 't') && (stroka[pos + 4] != '(' || (pos != 0 && (pos != 0 && (stroka[pos - 2] != 45 && stroka[pos - 2] != 47 && stroka[pos - 2] != 94 && stroka[pos - 1] != 40 && stroka[pos - 2] != 42 && stroka[pos - 2] != 43))))) {
+		else if ((str[pos] == 's' && str[pos + 1] == 'q' && str[pos + 2] == 'r' && str[pos + 3] == 't') && (str[pos + 4] != '(' || (pos != 0 && (pos != 0 && (str[pos - 2] != 45 && str[pos - 2] != 47 && str[pos - 2] != 94 && str[pos - 1] != 40 && str[pos - 2] != 42 && str[pos - 2] != 43))))) {
 			throw invalid_argument("Incorrect arithmetics the sqrt function");
 			check = false;
 		}
-		else if (stroka[pos] == 's' && stroka[pos + 1] == 'q' && stroka[pos + 2] == 'r' && stroka[pos + 3] == 't') {
+		else if (str[pos] == 's' && str[pos + 1] == 'q' && str[pos + 2] == 'r' && str[pos + 3] == 't') {
 			pos = pos + 4;
 		}
-		else if (stroka[pos] == 's' && stroka[pos + 1] == 'i' && stroka[pos + 2] == 'n') {
+		else if (str[pos] == 's' && str[pos + 1] == 'i' && str[pos + 2] == 'n') {
 			pos = pos + 3;
 		}
 
 
-		else if (stroka[pos] == 'l' && ((stroka[pos + 1] != 'o' && stroka[pos + 2] != 'g') && (stroka[pos + 1] != 'n'))) {
+		else if (str[pos] == 'l' && ((str[pos + 1] != 'o' && str[pos + 2] != 'g') && (str[pos + 1] != 'n'))) {
 			throw invalid_argument("Incorrect input of the log or ln function");
 			check = false;
 		}
-		else if ((stroka[pos] == 'l' && stroka[pos + 1] == 'o' && stroka[pos + 2] == 'g') && (stroka[pos + 3] != '(' || (pos != 0 && (stroka[pos - 2] != 45 && stroka[pos - 2] != 47 && stroka[pos - 2] != 94 && stroka[pos - 1] != 40 && stroka[pos - 2] != 42 && stroka[pos - 2] != 43)))) {
+		else if ((str[pos] == 'l' && str[pos + 1] == 'o' && str[pos + 2] == 'g') && (str[pos + 3] != '(' || (pos != 0 && (str[pos - 2] != 45 && str[pos - 2] != 47 && str[pos - 2] != 94 && str[pos - 1] != 40 && str[pos - 2] != 42 && str[pos - 2] != 43)))) {
 			throw invalid_argument("Incorrect arithmetics the log function");
 			check = false;
 		}
-		else if ((stroka[pos] == 'l' && stroka[pos + 1] == 'n') && (stroka[pos + 2] != '(' || (pos != 0 && (stroka[pos - 2] != 45 && stroka[pos - 2] != 47 && stroka[pos - 2] != 94 && stroka[pos - 1] != 40 && stroka[pos - 2] != 42 && stroka[pos - 2] != 43)))) {
+		else if ((str[pos] == 'l' && str[pos + 1] == 'n') && (str[pos + 2] != '(' || (pos != 0 && (str[pos - 2] != 45 && str[pos - 2] != 47 && str[pos - 2] != 94 && str[pos - 1] != 40 && str[pos - 2] != 42 && str[pos - 2] != 43)))) {
 			throw invalid_argument("Incorrect arithmetics the ln function");
 			check = false;
 		}
-		else if (stroka[pos] == 'l' && stroka[pos + 1] == 'o' && stroka[pos + 2] == 'g') {
+		else if (str[pos] == 'l' && str[pos + 1] == 'o' && str[pos + 2] == 'g') {
 			pos = pos + 3;
 		}
-		else if (stroka[pos] == 'l' && stroka[pos + 1] == 'n') {
+		else if (str[pos] == 'l' && str[pos + 1] == 'n') {
 			pos = pos + 2;
 		}
 
 
-		else if (stroka[pos] == 't' && stroka[pos + 1] != 'g') {
+		else if (str[pos] == 't' && str[pos + 1] != 'g') {
 			throw invalid_argument("Incorrect input of the tg function");
 			check = false;
 		}
-		else if ((stroka[pos] == 't' && stroka[pos + 1] == 'g') && (stroka[pos + 2] != '(' || (pos != 0 && (stroka[pos - 2] != 45 && stroka[pos - 2] != 47 && stroka[pos - 2] != 94 && stroka[pos - 1] != 40 && stroka[pos - 2] != 42 && stroka[pos - 2] != 43)))) {
+		else if ((str[pos] == 't' && str[pos + 1] == 'g') && (str[pos + 2] != '(' || (pos != 0 && (str[pos - 2] != 45 && str[pos - 2] != 47 && str[pos - 2] != 94 && str[pos - 1] != 40 && str[pos - 2] != 42 && str[pos - 2] != 43)))) {
 			throw invalid_argument("Incorrect arithmetics the tg function");
 			check = false;
 		}
-		else if (stroka[pos] == 't' && stroka[pos + 1] == 'g') {
+		else if (str[pos] == 't' && str[pos + 1] == 'g') {
 			pos = pos + 2;
 		}
 
-		else if (stroka[pos] == 'p' && stroka[pos + 1] != 'i') {
+		else if (str[pos] == 'p' && str[pos + 1] != 'i') {
 			throw invalid_argument("Incorrect input of the pi const");
 			check = false;
 		}
-		else if ((stroka[pos] == 'p' && stroka[pos + 1] == 'i') && ((stroka[pos + 3] != 45 && stroka[pos + 3] != 47 && stroka[pos + 3] != 94 && stroka[pos + 2] != 41 && stroka[pos + 3] != 42 && stroka[pos + 3] != 43) || (pos != 0 && (stroka[pos - 2] != 45 && stroka[pos - 2] != 47 && stroka[pos - 2] != 94 && stroka[pos - 1] != 40 && stroka[pos - 2] != 42 && stroka[pos - 2] != 43)))) {
+		else if ((str[pos] == 'p' && str[pos + 1] == 'i') && ((str[pos + 3] != 45 && str[pos + 3] != 47 && str[pos + 3] != 94 && str[pos + 2] != 41 && str[pos + 3] != 42 && str[pos + 3] != 43) || (pos != 0 && (str[pos - 2] != 45 && str[pos - 2] != 47 && str[pos - 2] != 94 && str[pos - 1] != 40 && str[pos - 2] != 42 && str[pos - 2] != 43)))) {
 			throw invalid_argument("Incorrect arithmetics the pi const");
 			check = false;
 		}
-		else if (stroka[pos] == 'p' && stroka[pos + 1] == 'i') {
+		else if (str[pos] == 'p' && str[pos + 1] == 'i') {
 			pos = pos + 2;
 		}
-		else if (stroka[pos] == 'e' && ((stroka[pos + 2] != 45 && stroka[pos + 2] != 47 && stroka[pos + 2] != 94 && stroka[pos + 1] != 41 && stroka[pos + 2] != 42 && stroka[pos + 2] != 43) || (pos != 0 && (stroka[pos - 2] != 45 && stroka[pos - 2] != 47 && stroka[pos - 2] != 94 && stroka[pos - 1] != 40 && stroka[pos - 2] != 42 && stroka[pos - 2] != 43)))) {
+		else if (str[pos] == 'e' && ((str[pos + 2] != 45 && str[pos + 2] != 47 && str[pos + 2] != 94 && str[pos + 1] != 41 && str[pos + 2] != 42 && str[pos + 2] != 43) || (pos != 0 && (str[pos - 2] != 45 && str[pos - 2] != 47 && str[pos - 2] != 94 && str[pos - 1] != 40 && str[pos - 2] != 42 && str[pos - 2] != 43)))) {
 			throw invalid_argument("Incorrect arithmetics the e const");
 			check = false;
 		}
-		else if (stroka[pos] == '=') {}
-		else if (stroka[pos] == ' ') {}
-		else if (stroka[pos] == ' ' && stroka[pos] != '=' && stroka[pos] != 'a' && stroka[pos] != 'b' && stroka[pos] != 'e' && stroka[pos] != 'c' && stroka[pos] != 'o' && stroka[pos] != 's' && stroka[pos] != 't' && stroka[pos] != 'g' && stroka[pos] != 'i' && stroka[pos] != 'n' && stroka[pos] != 'q' && stroka[pos] != 'r' && stroka[pos] != 'l' && stroka[pos] != 'p' && stroka[pos] != '+' && stroka[pos] != '-' && stroka[pos] != '/' && stroka[pos] != '*' && stroka[pos] != '^' /*&& str[pos] != ')' && str[pos] != '('*/ && !(stroka[pos] <= 57 && stroka[pos] >= 48)) {
+		else if (str[pos] == '=') {}
+		else if (str[pos] == ' ') {}
+		else if (str[pos] == ' ' && str[pos] != '=' && str[pos] != 'a' && str[pos] != 'b' && str[pos] != 'e' && str[pos] != 'c' && str[pos] != 'o' && str[pos] != 's' && str[pos] != 't' && str[pos] != 'g' && str[pos] != 'i' && str[pos] != 'n' && str[pos] != 'q' && str[pos] != 'r' && str[pos] != 'l' && str[pos] != 'p' && str[pos] != '+' && str[pos] != '-' && str[pos] != '/' && str[pos] != '*' && str[pos] != '^' /*&& str[pos] != ')' && str[pos] != '('*/ && !(str[pos] <= 57 && str[pos] >= 48)) {
 			throw invalid_argument("Invalid character. The calculator can use only numbers like double, brackets, actions: +, -, *, /, ^ and functions: sin, cos, tg, ctg, sqrt, log, ln, abs");
 			check = false;
 		}
@@ -142,41 +142,41 @@ bool check_for_correct_input(string stroka) {
 	return check;
 }
 
-string change_functions(string stroka) {
+string change_functions(string str) {
 	//sqrt,sgn,sin,cos,log,ln,tg,ctg
-	int val1 = stroka.find("sin");
+	int val1 = str.find("sin");
 	if (val1 != -1) {
-		stroka.replace(stroka.find("sin"), 3, "s");
+		str.replace(str.find("sin"), 3, "s");
 	}
-	int val2 = stroka.find("cos");
+	int val2 = str.find("cos");
 	if (val2 != -1) {
-		stroka.replace(stroka.find("cos"), 3, "c");
+		str.replace(str.find("cos"), 3, "c");
 	}
-	int val3 = stroka.find("sqrt");
+	int val3 = str.find("sqrt");
 	if (val3 != -1) {
-		stroka.replace(stroka.find("sqrt"), 4, "q");
+		str.replace(str.find("sqrt"), 4, "q");
 	}
-	int val4 = stroka.find("abs");
+	int val4 = str.find("abs");
 	if (val4 != -1) {
-		stroka.replace(stroka.find("abs"), 3, "a");
+		str.replace(str.find("abs"), 3, "a");
 	}
-	int val5 = stroka.find("log");
+	int val5 = str.find("log");
 	if (val5 != -1) {
-		stroka.replace(stroka.find("log"), 3, "l");
+		str.replace(str.find("log"), 3, "l");
 	}
-	int val6 = stroka.find("ln");
+	int val6 = str.find("ln");
 	if (val6 != -1) {
-		stroka.replace(stroka.find("ln"), 2, "n");
+		str.replace(str.find("ln"), 2, "n");
 	}
-	int val7 = stroka.find("tg");
+	int val7 = str.find("tg");
 	if (val7 != -1) {
-		stroka.replace(stroka.find("tg"), 2, "t");
+		str.replace(str.find("tg"), 2, "t");
 	}
-	int val8 = stroka.find("ctg");
+	int val8 = str.find("ctg");
 	if (val8 != -1) {
-		stroka.replace(stroka.find("ctg"), 3, "y");
+		str.replace(str.find("ctg"), 3, "y");
 	}
-	return stroka;
+	return str;
 }
 int hasPrecedence(string i) // function to determine operator precedence
 {
@@ -192,15 +192,15 @@ int hasPrecedence(string i) // function to determine operator precedence
 	return iWeight;
 }
 
-string postfix(string stroka) {
+string postfix(string str) {
 	Stack<string> temp;
 	string postfix_string;  // converted string
 	string buf, dop;
 	int pos;
 	size_t size = -1;
-	for (int i = 0; i < stroka.length(); i++)
+	for (int i = 0; i < str.length(); i++)
 	{
-		buf = stroka[i];
+		buf = str[i];
 		if (buf == "0" || buf == "1" || buf == "2" || buf == "3" || buf == "4" || buf == "5" || buf == "6" || buf == "7" || buf == "8" || buf == "9" || buf == "." || buf == "e")    // if str[i] is a digit (0-9), add to postfix string
 		{
 			postfix_string += buf;
@@ -212,107 +212,107 @@ string postfix(string stroka) {
 				size++;
 			}
 		}
-		else if (buf == "p" && stroka[i + 1] == 'i')
+		else if (buf == "p" && str[i + 1] == 'i')
 		{
 			postfix_string += buf;
-			postfix_string += stroka[i + 1];
+			postfix_string += str[i + 1];
 			size = size + 2;
 			i = i + 2;
 		}//pi
-		else if (buf == "a" && stroka[i + 1] == 'b')
+		else if (buf == "a" && str[i + 1] == 'b')
 		{
 			dop = "(";
 			temp.push(dop);
 			dop = "\0";
-			pos = stroka.find("(", i);
-			dop.assign(stroka, i, pos - i);
+			pos = str.find("(", i);
+			dop.assign(str, i, pos - i);
 			temp.push(dop);
 			dop = "\0";
-			stroka[pos] = ' ';
+			str[pos] = ' ';
 			i = pos;
 		}//log
-		else if (buf == "s" && stroka[i + 1] == 'q')
+		else if (buf == "s" && str[i + 1] == 'q')
 		{
 			dop = "(";
 			temp.push(dop);
 			dop = "\0";
-			pos = stroka.find("(", i);
-			dop.assign(stroka, i, pos - i);
+			pos = str.find("(", i);
+			dop.assign(str, i, pos - i);
 			temp.push(dop);
 			dop = "\0";
-			stroka[pos] = ' ';
+			str[pos] = ' ';
 			i = pos;
 		}//sqrt
-		else if (buf == "s" && stroka[i + 1] == 'i')
+		else if (buf == "s" && str[i + 1] == 'i')
 		{
 			dop = "(";
 			temp.push(dop);
 			dop = "\0";
-			pos = stroka.find("(", i);
-			dop.assign(stroka, i, pos - i);
+			pos = str.find("(", i);
+			dop.assign(str, i, pos - i);
 			temp.push(dop);
 			dop = "\0";
-			stroka[pos] = ' ';
+			str[pos] = ' ';
 			i = pos;
 		}//sin
-		else if (buf == "c" && stroka[i + 1] == 'o')
+		else if (buf == "c" && str[i + 1] == 'o')
 		{
 			dop = "(";
 			temp.push(dop);
 			dop = "\0";
-			pos = stroka.find("(", i);
-			dop.assign(stroka, i, pos - i);
+			pos = str.find("(", i);
+			dop.assign(str, i, pos - i);
 			temp.push(dop);
 			dop = "\0";
-			stroka[pos] = ' ';
+			str[pos] = ' ';
 			i = pos;
 		}//cos
-		else if (buf == "c" && stroka[i + 1] == 't')
+		else if (buf == "c" && str[i + 1] == 't')
 		{
 			dop = "(";
 			temp.push(dop);
 			dop = "\0";
-			pos = stroka.find("(", i);
-			dop.assign(stroka, i, pos - i);
+			pos = str.find("(", i);
+			dop.assign(str, i, pos - i);
 			temp.push(dop);
 			dop = "\0";
-			stroka[pos] = ' ';
+			str[pos] = ' ';
 			i = pos;
 		}//ctg
-		else if (buf == "t" && stroka[i + 1] == 'g')
+		else if (buf == "t" && str[i + 1] == 'g')
 		{
 			dop = "(";
 			temp.push(dop);
 			dop = "\0";
-			pos = stroka.find("(", i);
-			dop.assign(stroka, i, pos - i);
+			pos = str.find("(", i);
+			dop.assign(str, i, pos - i);
 			temp.push(dop);
 			dop = "\0";
-			stroka[pos] = ' ';
+			str[pos] = ' ';
 			i = pos;
 		}//tg
-		else if (buf == "l" && stroka[i + 1] == 'o')
+		else if (buf == "l" && str[i + 1] == 'o')
 		{
 			dop = "(";
 			temp.push(dop);
 			dop = "\0";
-			pos = stroka.find("(", i);
-			dop.assign(stroka, i, pos - i);
+			pos = str.find("(", i);
+			dop.assign(str, i, pos - i);
 			temp.push(dop);
 			dop = "\0";
-			stroka[pos] = ' ';
+			str[pos] = ' ';
 			i = pos;
 		}//log
-		else if (buf == "l" && stroka[i + 1] == 'n')
+		else if (buf == "l" && str[i + 1] == 'n')
 		{
 			dop = "(";
 			temp.push(dop);
 			dop = "\0";
-			pos = stroka.find("(", i);
-			dop.assign(stroka, i, pos - i);
+			pos = str.find("(", i);
+			dop.assign(str, i, pos - i);
 			temp.push(dop);
 			dop = "\0";
-			stroka[pos] = ' ';
+			str[pos] = ' ';
 			i = pos;
 		}//ln
 
@@ -514,13 +514,13 @@ double calculate(string postfix_string) {
 
 
 int main() {
-	string stroka;
+	string str;
 	cout << "Input: " << endl;
-	getline(cin, stroka, '=');
+	getline(cin, str, '=');
 	string postfix_string;
 	try {
-		if (/*check_bracekts(stroka) &&*/ check_for_correct_input(stroka) /*&& chek_kol_(stroka)*/) {
-			postfix_string = postfix(stroka); // convert to postfix
+		if (/*check_bracekts(str) &&*/ check_for_correct_input(str) /*&& chek_kol_(str)*/) {
+			postfix_string = postfix(str); // convert to postfix
 		}
 	}
 	catch (const invalid_argument error) {
@@ -529,7 +529,7 @@ int main() {
 	change_functions(postfix_string);
 	cout << "In postfix notaion: " << endl;
 	cout << postfix_string << '\n';
-	//cout << stroka << '\n';
+	//cout << str << '\n';
 	calculate(change_functions(postfix_string));
 	
 }
